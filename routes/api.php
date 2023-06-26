@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/user', [UserApiController::class, 'store']);
 
-Route::post('login', [AuthApiController::class, 'login']);
+Route::post('/login', [AuthApiController::class, 'login'])->name('login');
 
 Route::middleware('api')->group(function () {
     Route::resource('flight', FlightApiController::class)->only(['index', 'show'])->middleware('auth:api');
