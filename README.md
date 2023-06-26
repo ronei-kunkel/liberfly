@@ -50,7 +50,7 @@ Para cada endpoint siga a doc, mas siga a sequencia de:
 
 POST <http://localhost/api/user>
 
-- Fazer a chamada para recuperar o Token e passar como Bearer para outras requisições
+- Fazer a chamada para recuperar o Token e passar como Bearer para outras requisições (endpoint sem autenticação)
 
 POST <http://localhost/api/login>
 
