@@ -57,4 +57,5 @@ POST <http://localhost/api/login>
 - Passe o token que recebeu na resposta anterior como header Authorization sendo do tipo Bearer e pode fazer as chamadas para
 
 GET <http://localhost/api/flight>
+
 GET <http://localhost/api/flight/{id}>
