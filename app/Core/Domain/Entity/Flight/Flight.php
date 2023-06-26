@@ -4,27 +4,27 @@ namespace App\Core\Domain\Entity\Flight;
 
 final class Flight
 {
-  private string $uuid;
+  private string $id;
   private string $origin;
   private string $destiny;
 
-  private function __construct(string $uuid, string $origin, string $destiny)
+  private function __construct(string $id, string $origin, string $destiny)
   {
-    $this->uuid = $uuid;
+    $this->id = $id;
     $this->origin = $origin;
     $this->destiny = $destiny;
   }
 
-  public static function new(string $uuid, string $origin,string $destiny)
+  public static function new(string $id, string $origin,string $destiny)
   {
-    return new Flight($uuid, $origin, $destiny);
+    return new Flight($id, $origin, $destiny);
   }
 
 	/**
 	 * @return string
 	 */
-	public function uuid(): string {
-		return $this->uuid;
+	public function id(): string {
+		return $this->id;
 	}
 	
 	/**

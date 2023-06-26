@@ -10,17 +10,21 @@
 
 ### Iniciando o sistema
 
-Nessa etapa, pode ser que o sistema demore alguns segundos para ser carregado após ser acessado, mas é por conta do composer que está verificando as dependências do projeto e as instalando caso necessário
-
 - `docker-compose build`
-
-Aqui demorará um tempo, pois é necessário buildar a imagem por conta da extensão pdo que precisa ser instalada para ser possível acessar o banco pela aplicação
 
 - `docker-compose up -d`
 
-Se quiser acompanhar o que o composer está fazendo e saber quando terminará a execução, ao invés de rodar o segundo comando, rode o comando a seguir:
+Após finalizado, importe as dependências:
 
-- `docker-compose up -d && docker logs --tail=0 -f Liberfly-composer`
+- `composer run autoload-dump`
+
+Rode as migrations
+
+- `composer run migrations`
+
+Crie alguns voos (são gerados 3 por vez)
+
+- `composer run flights-generate`
 
 ### Acesso
 
@@ -28,8 +32,25 @@ Após alguns segundos a aplicação já está rodando em <http://localhost>
 
 ## Testes
 
-Para rodar os testes é necessário que o container esteja ativo, pois eles são executados dentro do próprio ambiente, para evitar que sejam executados com uma versão diferente da que o sistema está rodando de fato.
+Tive problemas com o banco nessa etapa e os testes não rodaram... :\
 
-Para isso basta apneas estar na raíz do projeto e rodar o comando:
+## Documentação
 
-- `composer run tests`
+A documentação da api está disponível em <http://localhost/api/documentation>
+
+## Etapas:
+
+Para cada endpoint siga a doc, mas siga a sequencia de:
+
+- Criar um usuário: (endpoint sem autenticação)
+
+POST <http://localhost/api/user>
+
+- Fazer a chamada para recuperar o Token e passar como Bearer para outras requisições
+
+POST <http://localhost/api/login>
+
+- Passe o token que recebeu na resposta anterior como header Authorization sendo do tipo Bearer e pode fazer as chamadas para
+
+GET <http://localhost/api/flight>
+GET <http://localhost/api/flight/{id}>

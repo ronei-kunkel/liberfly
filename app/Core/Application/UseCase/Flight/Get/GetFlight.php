@@ -4,20 +4,20 @@ namespace App\Core\Application\UseCase\Flight\Get;
 
 use App\Core\Application\UseCase\Flight\Get\GetFlightInputBoundary;
 use App\Core\Application\UseCase\Flight\Get\GetFlightOutputBoundary;
-use App\Core\Domain\Repository\Flight\FlightRepository;
+use App\Core\Domain\Repository\Flight\FlightRepositoryInterface;
 
 final class GetFlight
 {
-  private FlightRepository $repository;
+  private FlightRepositoryInterface $repository;
 
-  public function __construct(FlightRepository $repository)
+  public function __construct(FlightRepositoryInterface $repository)
   {
     $this->repository = $repository;
   }
 
   public function execute(GetFlightInputBoundary $input) : GetFlightOutputBoundary
   {
-    $flight = $this->repository->get($input->uuid());
+    $flight = $this->repository->get($input->id());
 
     return new GetFlightOutputBoundary($flight);
   }

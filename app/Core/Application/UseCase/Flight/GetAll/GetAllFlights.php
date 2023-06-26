@@ -3,13 +3,13 @@
 namespace App\Core\Application\UseCase\Flight\GetAll;
 
 use App\Core\Application\UseCase\Flight\GetAll\GetAllFlightsOutputBoundary;
-use App\Core\Domain\Repository\Flight\FlightRepository;
+use App\Core\Domain\Repository\Flight\FlightRepositoryInterface;
 
 final class GetAllFlights
 {
-  private FlightRepository $repository;
+  private FlightRepositoryInterface $repository;
 
-  public function __construct(FlightRepository $repository)
+  public function __construct(FlightRepositoryInterface $repository)
   {
     $this->repository = $repository;
   }

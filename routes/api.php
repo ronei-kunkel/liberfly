@@ -1,7 +1,8 @@
 <?php
 
 use App\Core\Infra\Http\Controller\Api\Auth\AuthApiController;
-use Illuminate\Http\Request;
+use App\Core\Infra\Http\Controller\Api\Flight\FlightApiController;
+use App\Core\Infra\Http\Controller\Api\User\UserApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/login', [AuthApiController::class, 'login']);
+Route::post('/user', [UserApiController::class, 'store']);
 
-Route::middleware('api')->get('/flight', function (Request $request) {
-    return $request->user();
+Route::post('login', [AuthApiController::class, 'login']);
+
+Route::middleware('api')->group(function () {
+    Route::resource('flight', FlightApiController::class)->only(['index', 'show'])->middleware('auth:api');
 });

@@ -11,12 +11,11 @@ final class TymonJwtAuth implements AuthServiceInterface
     public function login(array $credentials): string
     {
         if(empty($credentials)){
-            throw new Exception('Credenciais não fornecidas');
+            throw new Exception('Credenciais não fornecidas', 400);
         }
 
-
         if (!$token = JWTAuth::attempt($credentials)) {
-            throw new Exception('Credenciais inválidas');
+            throw new Exception('Credenciais inválidas', 401);
         }
 
         return $token;

@@ -3,14 +3,16 @@
     "type": "project",
     "description": "An test restfull api",
     "require": {
-        "php": "^8.2.0",
+        "php": "^8.1",
+        "darkaonline/l5-swagger": "^8.5",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "ramsey/uuid": "^4.2",
         "tymon/jwt-auth": "^1.0",
-        "ramsey/uuid": "^4.2"
+        "zircote/swagger-php": "^3"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.10",
@@ -33,9 +35,10 @@
         }
     },
     "scripts": {
-        "tests": "docker container exec -it $(docker ps -q -f name=liberfly_php-fpm_1) sh -c \"php vendor/bin/phpunit --colors --verbose --testdox && exit\" -d",
-        "migrations": "docker container exec -it $(docker ps -q -f name=liberfly_php-fpm_1) sh -c \"php artisan migrate && exit\" -d",
-        "autoload-dump": "docker start liberfly_composer_1 && docker logs --tail=0 -f liberfly_composer_1",
+        "autoload-dump": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"composer update\"",
+        "migrations": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"php artisan migrate\"",
+        "flights-generate" : "docker exec -it $(docker ps -q -f name=liberfly_php_1) sh -c 'php artisan tinker --execute=\"\\App\\Models\\Flight::factory()->count(3)->create()\"'",
+        "tests": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"php vendor/bin/phpunit --colors --verbose --testdox && exit\" -d",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

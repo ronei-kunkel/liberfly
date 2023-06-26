@@ -13,8 +13,8 @@ class CreateFlightTable extends Migration
      */
     public function up()
     {
-        Schema::create('flight', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
+        Schema::create('flights', function (Blueprint $table) {
+            $table->uuid('id');
             $table->string('origin');
             $table->string('destiny');
         });
@@ -27,6 +27,6 @@ class CreateFlightTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('flight');
+        Schema::dropIfExists('flights');
     }
 }

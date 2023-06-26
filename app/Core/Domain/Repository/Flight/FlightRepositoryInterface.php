@@ -6,7 +6,7 @@ use App\Core\Domain\Entity\Flight\Flight;
 
 interface FlightRepositoryInterface
 {
-  public function get(string $uuid): Flight;
+  public function get(string $id): ?array;
 
   public function getAll(): array;
 }

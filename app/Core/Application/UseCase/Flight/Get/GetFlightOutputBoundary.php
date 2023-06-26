@@ -7,14 +7,14 @@ use App\Core\Domain\Entity\Flight\Flight;
 final class GetFlightOutputBoundary
 {
 
-  private Flight $flight;
+  private ?array $flight;
 
-  public function __construct(Flight $flight)
+  public function __construct(?array $flight)
   {
     $this->flight = $flight;
   }
 
-  public function flight(): Flight
+  public function flight(): ?array
   {
     return $this->flight;
   }

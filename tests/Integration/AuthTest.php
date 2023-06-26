@@ -4,13 +4,24 @@ namespace Tests\Integration;
 
 use Tests\TestCase;
 
-final class FlightTest extends TestCase
+final class AuthTest extends TestCase
 {
-  /**
-   * Espera que a rota /api/flight retorne 200, ou seja, sucesso
-   */
-  public function test_()
-  {
 
+  public function test_login()
+  {
+    $response = $this->post('http://localhost/api/login', [
+      'email' => 'ronei.kunkel@gmail.com',
+      'password' => 'password'
+    ]);
+
+echo "<pre style='margin-left:260px;'>";
+print_r($response->json());
+echo "</pre>";
+exit;
+
+    $response->assertStatus(200);
+    $response->assertJsonFragment([
+      'status' => 'success'
+  ]);
   }
 }

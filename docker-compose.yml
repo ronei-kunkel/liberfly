@@ -1,0 +1,47 @@
+version: "3"
+services:
+
+  nginx:
+    build:
+      context: .
+      dockerfile: "./.docker/nginx/Dockerfile"
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./.docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./:/var/www
+      - ./.docker/nginx/logs:/var/log/nginx
+    links:
+      - php
+    networks:
+      - bridge
+
+  php:
+    build:
+      context: .
+      dockerfile: "./.docker/php/Dockerfile"
+    volumes:
+      - ./:/var/www
+    networks:
+      - bridge
+
+  mysql:
+    image: mysql:8.0.32
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: liberflyght
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpasswd
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+    restart: always
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge

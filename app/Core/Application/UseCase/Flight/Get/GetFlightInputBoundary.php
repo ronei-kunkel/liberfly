@@ -5,15 +5,15 @@ namespace App\Core\Application\UseCase\Flight\Get;
 final class GetFlightInputBoundary
 {
 
-  private string $uuid;
+  private string $id;
 
-  public function __construct(string $uuid)
+  public function __construct(string $id)
   {
-    $this->uuid = $uuid;
+    $this->id = $id;
   }
 
-  public function uuid(): string
+  public function id(): string
   {
-    return $this->uuid;
+    return $this->id;
   }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Infra\Database\Eloquent\FlightRepositoryEloquent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return (new FlightRepositoryEloquent())->get('b41b4964-e3e9-4f86-9af1-5c51617bff34');
 });
