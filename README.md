@@ -26,6 +26,10 @@ Crie alguns voos (são gerados 3 por vez)
 
 - `composer run flights-generate`
 
+Gere o token para gerar tokens
+
+- `composer run jwt-generate`
+
 ### Acesso
 
 Após alguns segundos a aplicação já está rodando em <http://localhost>

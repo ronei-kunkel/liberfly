@@ -37,6 +37,7 @@
     "scripts": {
         "autoload-dump": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"composer update\"",
         "migrations": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"php artisan migrate\"",
+        "jwt-generate": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"php artisan jwt:secret\"",
         "flights-generate" : "docker exec -it $(docker ps -q -f name=liberfly_php_1) sh -c 'php artisan tinker --execute=\"\\App\\Models\\Flight::factory()->count(3)->create()\"'",
         "tests": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"php vendor/bin/phpunit --colors --verbose --testdox && exit\" -d",
         "post-autoload-dump": [
