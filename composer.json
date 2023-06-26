@@ -35,7 +35,7 @@
         }
     },
     "scripts": {
-        "autoload-dump": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"cp -n .env.example .env && composer update && php artisan key:generate --ansi && php artisan vendor:publish --tag=laravel-assets --ansi --force\"",
+        "autoload-dump": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"cp -n .env.example .env && composer update && php artisan key:generate --ansi && php artisan vendor:publish --tag=laravel-assets --ansi --force\" && sudo chmod 777 -R storage && sudo chmod 777 -R bootstrap/cache",
         "migrations": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"php artisan migrate\"",
         "jwt-generate": "docker container exec -it $(docker ps -q -f name=liberfly_php_1) sh -c \"php artisan jwt:secret\"",
         "flights-generate" : "docker exec -it $(docker ps -q -f name=liberfly_php_1) sh -c 'php artisan tinker --execute=\"\\App\\Models\\Flight::factory()->count(3)->create()\"'",
