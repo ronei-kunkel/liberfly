@@ -34,10 +34,11 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: liberflyght
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpasswd
-      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: "false"
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     restart: always
     networks:
       - bridge

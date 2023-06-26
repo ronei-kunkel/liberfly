@@ -8,6 +8,10 @@
 
 ## Como rodar localmente
 
+### Se estiver rodando pela segunda vez e enfrentar problemas de permissões
+
+- `sudo chmod 777 -R . && rm -rf .docker/mysql/ && mkdir .docker/mysql/ && touch .docker/mysql/.gitignore && echo '*' > .docker/mysql/.gitignore && echo '!.gitignore' >> .docker/mysql/.gitignore`
+
 ### Iniciando o sistema
 
 - `docker-compose build`
@@ -30,6 +34,12 @@ Gere o token para gerar tokens
 
 - `composer run jwt-generate`
 
+Se em algum momento quiser parar os containers ou removê-los:
+
+- `docker-compose stop`
+
+- `docker-compose down`
+
 ### Acesso
 
 Após alguns segundos a aplicação já está rodando em <http://localhost>
@@ -42,20 +52,20 @@ Tive problemas com o banco nessa etapa e os testes não rodaram... :\
 
 A documentação da api está disponível em <http://localhost/api/documentation>
 
-## Etapas:
+## Etapas
 
 Para cada endpoint siga a doc, mas siga a sequencia de:
 
-- Criar um usuário: (endpoint sem autenticação)
+Criar um usuário: (endpoint sem autenticação)
 
-POST <http://localhost/api/user>
+- POST <http://localhost/api/user>
 
-- Fazer a chamada para recuperar o Token e passar como Bearer para outras requisições (endpoint sem autenticação)
+Fazer a chamada para recuperar o Token e passar como Bearer para outras requisições (endpoint sem autenticação)
 
-POST <http://localhost/api/login>
+- POST <http://localhost/api/login>
 
-- Passe o token que recebeu na resposta anterior como header Authorization sendo do tipo Bearer e pode fazer as chamadas para
+Passe o token que recebeu na resposta anterior como header Authorization sendo do tipo Bearer e pode fazer as chamadas para
 
-GET <http://localhost/api/flight>
+- GET <http://localhost/api/flight>
 
-GET <http://localhost/api/flight/{id}>
+- GET <http://localhost/api/flight/{id}>
